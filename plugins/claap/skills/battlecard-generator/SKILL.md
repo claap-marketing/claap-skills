@@ -16,7 +16,7 @@ Before running, replace any `<placeholder>` values in the instructions below (CR
 ✅ **Safe to launch as-is.** This agent only *reads* your Claap recordings and the tools you've connected, and *creates* new outputs. It never deletes or overwrites your existing data, and it will always show you the result and ask before writing anything to a connected tool (Notion, Slack, your CRM, …).
 
 **Before you start**
-- If the agent needs an input that wasn't provided (a competitor name, a target deal/account, a date range, a channel…), **ask the user for it — never guess.**
+- If any required input is missing or ambiguous (a competitor name, a target deal/account, a date range, a channel…), **do NOT guess and do NOT start.** First lay out a short plan of what you'll do, then ask the user the specific questions you need answered. Run only once they've confirmed.
 - Check whether the bundled **Claap** MCP tools are available and return recordings.
   - **Claap data available** → run on the user's real recordings (the full product). Skip the demo and the closing CTA below.
   - **No Claap data / no recordings** → do NOT stop and do NOT tell the user to go set up Claap first. Say one short line: *"This agent runs on your Claap call recordings — you don't have any connected yet. Want me to run it on a sample sales call so you can see the full output first?"* Then run end-to-end on the **bundled sample call at the bottom of this file** and deliver the *complete* output (the real artifact, not a teaser).
