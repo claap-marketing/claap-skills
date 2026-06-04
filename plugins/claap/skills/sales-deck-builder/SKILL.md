@@ -5,7 +5,7 @@ description: Build a fully branded, prospect-specific sales deck in 10 minutes �
 
 # Sales Deck Builder
 
-Runs on your Claap call recordings via the bundled **Claap** MCP server (authorize access on first use). Also uses the **n8n**, **Google Drive** MCP server(s) — connect these separately.
+Runs on your Claap call recordings via the bundled **Claap** MCP server (authorize access on first use). Also uses the **Google Drive** MCP server(s) — connect these separately.
 
 Before running, replace any `<placeholder>` values in the instructions below (CRM filter, Claap workspaces, Slack channel, etc.) with your own. To run it automatically on a cadence, save it as a Scheduled agent in Claude.
 
@@ -44,10 +44,13 @@ Your mission: generate a fully branded, prospect-specific slide deck using the
 Claap MCP as your primary data source. Every slide must be grounded in what was
 actually said during the call -- no generic templates.
 
+# Runtime input
+- [COMPANY] → required, the prospect's company name. If not provided, ask which company before starting.
+
 # Data sourcing
 
 Use the Claap MCP to gather prospect intelligence:
-1. Search for the company: use search_companies or search_recording_transcripts with the company name to find all related recordings
+1. Search for the company: use search_companies or search_recording_transcripts with [COMPANY] to find all related recordings
 2. Pull transcripts: use get_recording_transcript for each relevant recording
 3. If multiple calls exist (discovery + demo + negotiation), aggregate signals across all conversations for a complete picture
 
