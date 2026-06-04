@@ -1,6 +1,6 @@
 ---
 name: sales-deck-builder
-description: Build a fully branded, prospect-specific sales deck in 10 minutes — pulling pain points, quotes, and pricing context from every Claap call.
+description: Build a fully branded, prospect-specific sales deck in 1 minute — pulling pain points, quotes, and pricing context from every Claap call.
 ---
 
 # Sales Deck Builder

@@ -25,7 +25,7 @@ On first use each agent authorizes the **Claap** MCP server
 | 🎓 `customer-onboarding-deck-builder` | Turn every closed-won deal into persona-specific onboarding decks — IC sales, managers, CSMs, product, execs — grounded in real CRM data and Claap transcripts. |
 | ✍️ `customer-story-writer` | Generate a cinematic customer story page from every won deal — hero, quotes carousel, ROI metrics, deal timeline — and publish directly to your CMS. |
 | 📈 `objection-dashboard-builder` | Turn scattered objection data into an interactive monthly dashboard — verbatim quotes, category trends, and coaching insights, branded to your design system. |
-| 🧑‍🏫 `sales-deck-builder` | Build a fully branded, prospect-specific sales deck in 10 minutes — pulling pain points, quotes, and pricing context from every Claap call. |
+| 🧑‍🏫 `sales-deck-builder` | Build a fully branded, prospect-specific sales deck in 1 minute — pulling pain points, quotes, and pricing context from every Claap call. |
 | 🎯 `sales-meetings-daily-recap` | Get a structured Slack recap every morning of yesterday's sales calls — objections, competitor mentions, and product signals, each deep-linked to the exact moment in the recording. |
 | 🤝 `sales-cs-handover` | Automatic one-page handover for every closed deal — stakeholders, commitments, success criteria, and risks pulled from every sales recording in the cycle. |
 | 📊 `win-loss-analyzer` | Run a weekly win/loss readout — pulls closed deals from your CRM, mines reasons from Claap transcripts, ranks themes, and posts the digest to Slack. |
