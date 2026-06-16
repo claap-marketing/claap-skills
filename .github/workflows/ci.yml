@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    name: Lint and Validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check for required files
+        run: |
+          echo "Checking required files..."
+          test -f README.md || (echo "Missing README.md" && exit 1)
+          test -f LICENSE || (echo "Missing LICENSE" && exit 1)
+          test -f CLAUDE.md || (echo "Missing CLAUDE.md" && exit 1)
+          test -L AGENTS.md || (echo "Missing AGENTS.md symlink" && exit 1)
+          test -f .claude-plugin/marketplace.json || (echo "Missing .claude-plugin/marketplace.json" && exit 1)
+          test -f plugins/claap/.claude-plugin/plugin.json || (echo "Missing plugin.json" && exit 1)
+          test -f plugins/claap/.mcp.json || (echo "Missing plugin .mcp.json" && exit 1)
+          echo "All required files present ✓"
+
+      - name: Validate skill structure
+        run: |
+          echo "Validating skills..."
+          for skill_dir in plugins/claap/skills/*/; do
+            skill_name=$(basename "$skill_dir")
+            test -f "${skill_dir}SKILL.md" || (echo "Missing SKILL.md in $skill_name" && exit 1)
+            grep -q "^name:" "${skill_dir}SKILL.md" || (echo "Missing 'name' in $skill_name/SKILL.md" && exit 1)
+            grep -q "^description:" "${skill_dir}SKILL.md" || (echo "Missing 'description' in $skill_name/SKILL.md" && exit 1)
+            echo "  ✓ $skill_name valid"
+          done
+          echo "All skills validated ✓"
+
+      - name: Validate JSON configs
+        run: |
+          echo "Validating JSON..."
+          for f in .claude-plugin/marketplace.json .cursor-plugin/marketplace.json .cursor-plugin/plugin.json .agents/plugins/marketplace.json plugins/claap/.claude-plugin/plugin.json plugins/claap/.codex-plugin/plugin.json plugins/claap/.mcp.json; do
+            test -f "$f" && python3 -c "import json,sys; json.load(open('$f'))" && echo "  ✓ $f" || (echo "Invalid or missing JSON: $f" && exit 1)
+          done
+          echo "All JSON valid ✓"
+
+  count-skills:
+    name: Count Skills
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Count and list skills
+        run: |
+          echo "## Skills in Repository" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          count=0
+          for skill_dir in plugins/claap/skills/*/; do
+            if [ -f "${skill_dir}SKILL.md" ]; then
+              echo "- $(basename "$skill_dir")" >> $GITHUB_STEP_SUMMARY
+              count=$((count + 1))
+            fi
+          done
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Total: $count agents**" >> $GITHUB_STEP_SUMMARY

@@ -1,65 +1,92 @@
-# Claap skills
+# Claap — AI agents for revenue teams
 
-This repo hosts two things:
+Eight ready-to-run AI agents that turn your **Claap call recordings** into the things revenue teams actually need: win/loss readouts, competitor battlecards, prospect-specific sales decks, onboarding decks, customer stories, objection dashboards, daily call recaps, and sales→CS handovers.
 
-1. **The Claap plugin** — a Claude Code [plugin](https://code.claude.com/docs/en/plugins) of ready-to-run AI agents for revenue teams, installable from this repo's marketplace (below).
-2. **Standalone design skills** — single-file [Claude skills](https://docs.claude.com/en/docs/agents-and-tools/claude-code/skills) used by the Claap team. Drop one into Claude and it loads on demand when the task matches.
+Each agent reads transcripts and deal context through the [Claap MCP server](https://help.claap.io/en/articles/11786341-connect-claude-ai-with-claap-s-mcp-server) (bundled, one-click OAuth) and delivers a finished, branded artifact. Mirrors the live [Claap Agent Gallery](https://claap.io/agent-gallery).
 
-## The Claap plugin — AI agents for revenue teams
-
-Eight ready-to-run agents that work on your real **Claap** call recordings — win/loss analysis, battlecards, onboarding decks, customer stories, daily recaps and more. Each pulls transcripts and deal context via the [Claap MCP server](https://help.claap.io/en/articles/11786341-connect-claude-ai-with-claap-s-mcp-server) (bundled, OAuth) and turns meetings into action. Mirrors the live [Claap Agent Gallery](https://claap.io/agent-gallery).
+## Install (Claude Code)
 
 ```
 /plugin marketplace add claap-marketing/claap-skills
 /plugin install claap@claap-skills
 ```
 
-See [`plugins/claap/README.md`](plugins/claap/README.md) for the full agent list and per-agent MCP prerequisites.
+That's it — the Claap MCP ships with the plugin. The first time you run an agent, Claude asks you to authorize Claap (OAuth) against your workspace. Nothing else to set up.
 
-## Available standalone skills
+## No Claap account? See it work in 30 seconds
 
-These live in [`design-skills/`](design-skills/) (both the `.skill` files and their unpacked folders).
+Every agent has a **built-in sample sales call.** With nothing connected, just run one — it produces the complete, real output on that sample, so you can see exactly what you'd get before connecting a thing. When you're ready, connect Claap and run it on your own calls.
 
-  ### extract-branding-theme
+<!-- TODO: drop a short GIF of an agent run here — e.g. "ask → branded win/loss deck". Save it to docs/demo.gif and uncomment: -->
+<!-- ![Claap agent in action](docs/demo.gif) -->
 
-  Reverse-engineers any `.pptx` file into a structured JSON design system and saves every logo and image to disk. Point Claude at a deck, get back the colors, fonts, layouts, and
-  assets it's built from.
+## The agents
 
-  Pipeline: theme colors, typography, layout grid, masters and layouts, asset extraction and classification, component patterns, metadata.
+Run an agent just by asking for it in plain language. **Claap is bundled**; anything in "Connect" beyond Claap is optional — connect it yourself and the agent still delivers an in-chat artifact if it's missing.
 
-  Output:
-  - `branding_template.json` — full design system
-  - `assets/` — every image, brand assets flagged
+| Agent | What you get | Try saying | Connect |
+|---|---|---|---|
+| 📊 `win-loss-analyzer` | Weekly win/loss readout, themes ranked, posted to Slack | *"Run the weekly win/loss analysis on the last 30 days."* | Claap · HubSpot · Slack |
+| 🥊 `battlecard-generator` | Competitor battlecard grounded in real prospect quotes | *"Make a battlecard for Gong."* | Claap · Notion |
+| 🧑‍🏫 `sales-deck-builder` | Branded, prospect-specific sales deck | *"Build a sales deck for Acme."* | Claap · Google Drive |
+| 🎓 `customer-onboarding-deck-builder` | Persona-specific onboarding decks from a won deal | *"Create onboarding decks for the Acme account."* | Claap · HubSpot · Google Drive |
+| ✍️ `customer-story-writer` | Cinematic customer story page from a won deal | *"Write a customer story for the Acme deal."* | Claap only |
+| 📈 `objection-dashboard-builder` | Interactive monthly objection dashboard | *"Build this month's objection dashboard."* | Claap · Lovable |
+| 🎯 `sales-meetings-daily-recap` | Morning Slack recap of yesterday's calls, deep-linked | *"Recap yesterday's sales calls."* | Claap · Slack |
+| 🤝 `sales-cs-handover` | One-page sales→CS handover for a closed deal | *"Create the sales-to-CS handover for the Acme deal."* | Claap · Notion · CRM |
 
-  Triggers on any `.pptx` upload plus phrases like "extract the branding", "reverse-engineer this template", "what fonts and colors does this deck use".
+Want it on a cadence? Save any agent as a **Scheduled agent** in Claude and it runs itself (e.g. the daily recap every morning).
 
-  ### claap-design-system
+## Install on other agents
 
-  The Claap design system as a Tailwind-first reference: dark-first UI, Inter font, blue primary, full gray scale and accent palette, component recipes (cards, buttons, flashcards, stat callouts, accordions, nav), motion language. Drop into a Claude project to produce artifacts and HTML/React prototypes that feel like an extension of Claap, not just "styled with brand colors".
+These are standard [Agent Skills](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills) — they work anywhere the standard is supported.
 
-  Triggers on phrases like "claap design", "claap UI", "claap artifact", "claap prototype", "build claap interface".
+### Cursor
 
-  ### design-system-extractor
+Install from the Cursor Marketplace, or add manually via **Settings → Rules → Add Rule → Remote Rule (GitHub)** with `claap-marketing/claap-skills`.
 
-  Extracts a full design system from a live product — website (via Claude Chrome extension or WebFetch) or Figma file (via Dev Mode MCP) — and returns a drop-in design-system skill matching the `claap-design-system` format: tokens, component recipes, motion, interaction states. Bootstrap step for teams that want a `<product>-design-system` skill without writing one from scratch.
+### npx skills
 
-  Triggers on phrases like "extract design system", "design system from website", "design system from figma", "build a design-system skill", "reverse-engineer product UI".
+```
+npx skills add https://github.com/claap-marketing/claap-skills
+```
 
-  ## Using a skill
+### Clone / copy
 
-  Download the `.skill` file from [`design-skills/`](design-skills/), upload it to Claude.ai as a personal skill (or drop it into your local skills folder), then describe your task. Claude auto-loads it when triggers match.
+Clone this repo and copy the agent folders into your agent's skills directory:
 
-  ## Contributing
+| Agent | Skills directory | Docs |
+|---|---|---|
+| Claude Code | `~/.claude/skills/` | [docs](https://code.claude.com/docs/en/skills) |
+| Cursor | `~/.cursor/skills/` | [docs](https://cursor.com/docs/skills) |
+| OpenAI Codex | `~/.codex/skills/` | [docs](https://developers.openai.com/codex/skills/) |
+| OpenCode | `~/.config/opencode/skills/` | [docs](https://opencode.ai/docs/skills/) |
 
-  1. Add a new folder at the repo root with a `SKILL.md` inside.
-  2. Write the frontmatter `description` as a trigger spec — the clearer it is, the better auto-activation works.
-  3. Put scripts under `scripts/`, reference docs under `references/`.
-  4. Open a PR.
+The agent folders live in [`plugins/claap/skills/`](plugins/claap/skills/).
 
-  ## Roadmap
+## What you'll need
 
-  - [x] `extract-branding-theme`
-  - [x] `claap-design-system`
-  - [x] `design-system-extractor`
-  - [ ] `claap-sales-deck`
-  - [ ] `claap-icp`
+- A **Claap** account with call recordings (bundled MCP, authorized on first use) — or just use the built-in sample call to try it.
+- For some agents, the extra MCP servers listed in "Connect" above (your CRM, Slack, Notion, Google Drive). Each agent states what it uses and degrades gracefully when something isn't connected.
+
+If you have Claap but the MCP isn't connected yet, follow the [connector setup](https://help.claap.io/en/articles/11786373-using-claap-s-mcp-server).
+
+## Resources
+
+- [Claap Agent Gallery](https://claap.io/agent-gallery) — the same agents, on the web
+- [Connect Claude with Claap (MCP)](https://help.claap.io/en/articles/11786341-connect-claude-ai-with-claap-s-mcp-server)
+- [Agent Skills standard](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills)
+
+---
+
+## For the Claap team — standalone design skills
+
+These live in [`design-skills/`](design-skills/) and are **internal tooling**, not part of the agents plugin above. Each ships as an unpacked folder and a `.skill` zip you upload to Claude.ai as a personal skill.
+
+- **`claap-design-system`** — the Claap design system as a Tailwind-first reference (tokens, typography, component recipes, motion) so Claude artifacts feel native to Claap.
+- **`design-system-extractor`** — extracts a full design system from any live product (website or Figma) into a drop-in design-system skill.
+- **`extract-branding-theme`** — reverse-engineers any `.pptx` into a structured JSON design system and saves every logo/image to disk.
+
+## License
+
+[MIT](LICENSE)
