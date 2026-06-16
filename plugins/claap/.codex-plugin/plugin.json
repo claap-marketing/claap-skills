@@ -1,0 +1,40 @@
+{
+  "name": "claap",
+  "version": "1.0.0",
+  "description": "Ready-to-run AI agents for revenue teams, grounded in your real Claap call recordings. Win/loss analysis, battlecards, onboarding decks, customer stories, daily recaps and more — each a skill that pulls transcripts via the Claap MCP and turns meetings into action.",
+  "author": {
+    "name": "Claap",
+    "url": "https://claap.io"
+  },
+  "homepage": "https://claap.io/agent-gallery",
+  "repository": "https://github.com/claap-marketing/claap-skills",
+  "license": "MIT",
+  "keywords": [
+    "claap",
+    "sales",
+    "revops",
+    "customer-success",
+    "meetings",
+    "call-recording",
+    "transcripts",
+    "crm",
+    "go-to-market"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Claap",
+    "shortDescription": "Turn your Claap call recordings into decks, battlecards, and reports",
+    "longDescription": "Ready-to-run agents for revenue teams, grounded in your real Claap call recordings: win/loss analysis, battlecards, onboarding decks, customer stories, objection dashboards, daily recaps and more.",
+    "developerName": "Claap",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Read", "Write"],
+    "websiteURL": "https://claap.io",
+    "defaultPrompt": [
+      "Run the weekly win/loss analysis on the last 30 days",
+      "Build a sales deck for <prospect>",
+      "Generate a battlecard for <competitor>",
+      "Give me a recap of yesterday's sales calls"
+    ]
+  }
+}

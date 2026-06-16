@@ -1,0 +1,20 @@
+{
+  "name": "claap-skills",
+  "interface": {
+    "displayName": "Claap"
+  },
+  "plugins": [
+    {
+      "name": "claap",
+      "source": {
+        "source": "local",
+        "path": "./plugins/claap"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
