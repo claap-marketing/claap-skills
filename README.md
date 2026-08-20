@@ -1,6 +1,6 @@
 # Claap — AI agents for revenue teams
 
-Eight ready-to-run AI agents that turn your **Claap call recordings** into the things revenue teams actually need: win/loss readouts, competitor battlecards, prospect-specific sales decks, onboarding decks, customer stories, objection dashboards, daily call recaps, and sales→CS handovers.
+Nine ready-to-run AI agents that turn your **Claap call recordings** into the things revenue teams actually need: win/loss readouts, competitor battlecards, prospect-specific sales decks, onboarding decks, customer stories, objection dashboards, daily call recaps, sales→CS handovers, and pre-call dry runs against a voice AI that plays your actual prospect.
 
 Each agent reads transcripts and deal context through the [Claap MCP server](https://help.claap.io/en/articles/11786341-connect-claude-ai-with-claap-s-mcp-server) (bundled, one-click OAuth) and delivers a finished, branded artifact. Mirrors the live [Claap Agent Gallery](https://claap.io/agent-gallery).
 
@@ -34,6 +34,7 @@ Run an agent just by asking for it in plain language. **Claap is bundled**; anyt
 | 📈 `objection-dashboard-builder` | Interactive monthly objection dashboard | *"Build this month's objection dashboard."* | Claap · Lovable |
 | 🎯 `sales-meetings-daily-recap` | Morning Slack recap of yesterday's calls, deep-linked | *"Recap yesterday's sales calls."* | Claap · Slack |
 | 🤝 `sales-cs-handover` | One-page sales→CS handover for a closed deal | *"Create the sales-to-CS handover for the Acme deal."* | Claap · Notion · CRM |
+| 🎭 `pre-call-dry-run` | Practice call against a voice AI playing your actual prospect, then coaching | *"Prep me for my 3pm with Acme — dry run first."* | Claap · ElevenLabs |
 
 Want it on a cadence? Save any agent as a **Scheduled agent** in Claude and it runs itself (e.g. the daily recap every morning).
 

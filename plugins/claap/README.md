@@ -35,6 +35,7 @@ you can see exactly what you'd get before connecting anything.
 | 🧑‍🏫 `sales-deck-builder` | Build a fully branded, prospect-specific sales deck in minutes — pulling pain points, quotes, and pricing context from every Claap call. | Claap · Google Drive |
 | 🎯 `sales-meetings-daily-recap` | Get a structured Slack recap every morning of yesterday's sales calls — objections, competitor mentions, and product signals, each deep-linked to the exact moment in the recording. | Claap · Slack |
 | 🤝 `sales-cs-handover` | Automatic one-page handover for every closed deal — stakeholders, commitments, success criteria, and risks pulled from every sales recording in the cycle. | Claap · Notion (optional) · HubSpot/Salesforce (optional) |
+| 🎭 `pre-call-dry-run` | Practice the call before the call — rebuilds your prospect from past Claap calls, spins up an ElevenLabs voice AI that plays them, runs you through the conversation, then coaches you on what to fix before the real one. | Claap · ElevenLabs (optional) |
 | 📊 `win-loss-analyzer` | Run a weekly win/loss readout — pulls closed deals from your CRM, mines reasons from Claap transcripts, ranks themes, and posts the digest to Slack. | Claap · HubSpot · Slack |
 
 "Connect" shows what each agent uses. **Claap is bundled**; anything else (CRM,
